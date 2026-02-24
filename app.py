@@ -505,13 +505,26 @@ with right_col:
 
         # ── Green Leaf Check ──
         def is_rice_leaf(arr):
-            f = arr.astype(float)
-            R, G, B = f[:,:,0], f[:,:,1], f[:,:,2]
-            green_mask  = (G > R * 0.9) & (G > B * 0.9) & (G > 40)
-            green_ratio = green_mask.sum() / green_mask.size
-            return green_ratio, green_ratio >= 0.15
+            img = arr.astype(np.uint8)
 
-        green_ratio, is_leaf = is_rice_leaf(img_array)
+            # ---- GREEN CHECK ----
+            hsv = cv2.cvtColor(img, cv2.COLOR_RGB2HSV)
+            lower_green = np.array([25, 40, 40])
+            upper_green = np.array([90, 255, 255])
+            mask = cv2.inRange(hsv, lower_green, upper_green)
+            green_ratio = np.sum(mask > 0) / mask.size
+
+            # ---- EDGE CHECK (leaf has vein texture) ----
+            gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+            edges = cv2.Canny(gray, 50, 150)
+            edge_ratio = np.sum(edges > 0) / edges.size
+
+            # ---- FINAL DECISION ----
+            is_leaf = (green_ratio > 0.08) and (edge_ratio > 0.02)
+
+            return green_ratio, edge_ratio, is_leaf
+
+        green_ratio, edge_ratio, is_leaf = is_rice_leaf(img_array)
 
         if not is_leaf:
             # ── Not a leaf warning ──
@@ -535,8 +548,8 @@ with right_col:
                     This image doesn't appear to be a rice leaf.<br>
                     Please upload a clear photo of a rice leaf.<br><br>
                     <span style="color:#4a5e4a; font-size:0.8rem;">
-                        Green content detected: {green_ratio*100:.1f}%
-                        &nbsp;|&nbsp; Minimum required: 15%
+                        Green detected: {green_ratio*100:.1f}%
+                        &nbsp;|&nbsp; Edge texture: {edge_ratio*100:.1f}%
                     </span>
                 </div>
             </div>
