@@ -554,76 +554,76 @@ with right_col:
                 confidence = preds[0][pred_idx] * 100
                 info       = disease_data[pred_label]
 
-        # ── Result Header ──
-        card_class = ('success' if confidence >= 80
-                      else 'warning' if confidence >= 60
-                      else 'danger')
-
-        st.markdown(f"""
-        <div class="result-card {card_class}">
-            <div class="disease-tag {info['tag_class']}">
-                {info['emoji']} {info['short']}
-            </div>
-            <div style="
-                font-family: 'Playfair Display', serif;
-                font-size: 2.2rem;
-                font-weight: 700;
-                color: #ffffff;
-                margin-bottom: 0.3rem;
-            ">{confidence:.1f}%</div>
-            <div style="color:#4a5e4a; font-size:0.85rem;">
-                Confidence Score
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        # ── Confidence Bars ──
-        st.markdown('<p class="section-title">📊 All Class Scores</p>',
-                    unsafe_allow_html=True)
-
-        class_names = [labels[i] for i in range(3)]
-        for i in range(3):
-            name   = class_names[i]
-            conf   = preds[0][i] * 100
-            is_top = (i == pred_idx)
-            fill   = 'primary' if is_top else 'secondary'
-            emoji  = disease_data[name]['emoji']
+            # ── Result Header ──
+            card_class = ('success' if confidence >= 80
+                          else 'warning' if confidence >= 60
+                          else 'danger')
 
             st.markdown(f"""
-            <div class="conf-row">
-                <div class="conf-label">
-                    <span class="conf-name">{emoji} {name}</span>
-                    <span class="conf-pct">{conf:.1f}%</span>
+            <div class="result-card {card_class}">
+                <div class="disease-tag {info['tag_class']}">
+                    {info['emoji']} {info['short']}
                 </div>
-                <div class="conf-track">
-                    <div class="conf-fill {fill}"
-                         style="width:{conf}%">
-                    </div>
+                <div style="
+                    font-family: 'Playfair Display', serif;
+                    font-size: 2.2rem;
+                    font-weight: 700;
+                    color: #ffffff;
+                    margin-bottom: 0.3rem;
+                ">{confidence:.1f}%</div>
+                <div style="color:#4a5e4a; font-size:0.85rem;">
+                    Confidence Score
                 </div>
             </div>
             """, unsafe_allow_html=True)
 
-        # ── Disease Info ──
-        st.markdown('<br>', unsafe_allow_html=True)
-        st.markdown('<p class="section-title">📋 Disease Details</p>',
-                    unsafe_allow_html=True)
+            # ── Confidence Bars ──
+            st.markdown('<p class="section-title">📊 All Class Scores</p>',
+                        unsafe_allow_html=True)
 
-        st.markdown(f"""
-        <div class="info-grid">
-            <div class="info-card">
-                <div class="info-card-title">🔍 Description</div>
-                <div class="info-card-text">{info['description']}</div>
+            class_names = [labels[i] for i in range(3)]
+            for i in range(3):
+                name   = class_names[i]
+                conf   = preds[0][i] * 100
+                is_top = (i == pred_idx)
+                fill   = 'primary' if is_top else 'secondary'
+                emoji  = disease_data[name]['emoji']
+
+                st.markdown(f"""
+                <div class="conf-row">
+                    <div class="conf-label">
+                        <span class="conf-name">{emoji} {name}</span>
+                        <span class="conf-pct">{conf:.1f}%</span>
+                    </div>
+                    <div class="conf-track">
+                        <div class="conf-fill {fill}"
+                             style="width:{conf}%">
+                        </div>
+                    </div>
+                </div>
+                """, unsafe_allow_html=True)
+
+            # ── Disease Info ──
+            st.markdown('<br>', unsafe_allow_html=True)
+            st.markdown('<p class="section-title">📋 Disease Details</p>',
+                        unsafe_allow_html=True)
+
+            st.markdown(f"""
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-card-title">🔍 Description</div>
+                    <div class="info-card-text">{info['description']}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title">💊 Treatment</div>
+                    <div class="info-card-text">{info['treatment']}</div>
+                </div>
             </div>
-            <div class="info-card">
-                <div class="info-card-title">💊 Treatment</div>
-                <div class="info-card-text">{info['treatment']}</div>
+            <div class="info-card" style="margin-top:1rem;">
+                <div class="info-card-title">⚠️ Severity Level</div>
+                <div class="info-card-text">{info['severity']}</div>
             </div>
-        </div>
-        <div class="info-card" style="margin-top:1rem;">
-            <div class="info-card-title">⚠️ Severity Level</div>
-            <div class="info-card-text">{info['severity']}</div>
-        </div>
-        """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
 
 # ─── Footer ────────────────────────────────────────────────────────────────────
 st.markdown("""
