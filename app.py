@@ -386,20 +386,28 @@ disease_data = {
         'severity'   : 'Low–Medium'
     }
 }
-
 # ─── HERO ──────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="hero">
     <div class="hero-badge">🌾 AI-Powered Plant Pathology</div>
     <h1 class="hero-title">RiceGuard AI</h1>
-    <p class="hero-subtitle">
+    <p style="
+        color: #6b7f6b;
+        font-size: 1.1rem;
+        font-weight: 300;
+        max-width: 500px;
+        width: 100%;
+        margin: 0 auto 2.5rem auto;
+        line-height: 1.7;
+        text-align: center;
+        display: block;
+    ">
         Upload a rice leaf photo and get instant disease diagnosis
         powered by deep learning
     </p>
     <div class="hero-divider"></div>
 </div>
 """, unsafe_allow_html=True)
-
 # ─── Stats Bar ─────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="stats-bar">
