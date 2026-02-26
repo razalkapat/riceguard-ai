@@ -1,6 +1,0 @@
-tensorflow==2.20.0
-streamlit
-numpy
-opencv-python-headless
-Pillow
-matplotlib
