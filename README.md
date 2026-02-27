@@ -2,7 +2,7 @@
 
 > An end-to-end deep learning project that detects rice leaf diseases from images using InceptionV3 Transfer Learning, deployed as a live web application.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://riceguard-ai-l5qwxixmavk5h8pcffz9g2.streamlit.app/)
+[![Streamlit App](https://stat
 
 ---
 
