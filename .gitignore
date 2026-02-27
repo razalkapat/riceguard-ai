@@ -205,3 +205,5 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+saved_models/inceptionv3_finetuned_best.h5
+saved_models/inceptionv3_before_finetune.keras
