@@ -2,7 +2,7 @@
 
 > An end-to-end deep learning project that detects rice leaf diseases from images using InceptionV3 Transfer Learning, deployed as a live web application.
 
-[![Streamlit App](https://stat
+[![Streamlit App]([https://stat](https://riceguard-ai-rice-leaf-disease-detection.streamlit.app/)
 
 ---
 
@@ -152,14 +152,6 @@ opencv-python-headless
 Pillow
 matplotlib
 ```
-
----
-
-## 👨‍💻 Author
-
-**Muhammed Shihad**
-
-[![GitHub](https://img.shields.io/badge/GitHub-Shihadkp-black?logo=github)](https://github.com/Shihadkp)
 
 ---
 
