@@ -94,7 +94,7 @@ http://localhost:8501
 
 The app is deployed on Streamlit Cloud:
 
-👉 [Open RiceGuard AI](https://shihadkp-riceguard-ai-app.streamlit.app)
+👉 (https://riceguard-ai-rice-leaf-disease-detection.streamlit.app/)
 
 ---
 
